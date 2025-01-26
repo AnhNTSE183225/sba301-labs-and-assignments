@@ -1,45 +1,66 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import vaccine_front_image from '../assets/vaccine-front-image.png';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { UserContext } from '../App';
 
 export const LoginPage = () => {
+
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
+    const {user, setUser} = useContext(UserContext);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let user = {
+            email: email,
+            password: password,
+            loggedIn: true
+        }
+        setUser(user);
+        console.log(user);
+        navigate('/');
+    }
+
     return (
-        <Container style={{ backgroundColor: "#ececec" }} className='min-vh-100' fluid>
-            <Row className='p-5'>
-                <Col xs={12} md={8} lg={6} className='bg-white rounded-5 shadow-sm'>
-                    <Row className='h-100 py-3 px-3'>
-                        <Col className='rounded-5'
-                            style={{
-                                backgroundImage: `url(${vaccine_front_image})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat'
-                            }}
-                        >
-                        </Col>
-                        <Col>
-                            <Form className='p-4'>
-                                <Form.Group className='mb-3'>
-                                    <Form.Label className='fs-1 fw-bold'>VaccineX</Form.Label> <br/>
-                                    <Form.Label className='fs-5'>The world #1 leading in vaccination</Form.Label>
-                                </Form.Group>
-                                <Form.Group className="mb-1">
-                                    <Form.Control className='mb-2 fs-4' type="email" placeholder="Email" />
-                                    <Form.Control className='fs-4' type="password" placeholder="Password" />
-                                </Form.Group>
-                                <Form.Group className="mb-3 d-flex justify-content-between">
-                                    <Form.Check className='text-muted fs-6' type="checkbox" label="Remember me" />
-                                    <Link to='/forgot-password'>Forgot password?</Link>
-                                </Form.Group>
-                                <Button variant="primary" type="submit">
-                                    Submit
-                                </Button>
-                            </Form>
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
+        <Container style={{ backgroundColor: "#ececec"}} className='vh-100 d-flex justify-content-center align-items-center' fluid>
+            <Container style={{minHeight: '560px', maxWidth: '1000px'}} className='bg-white shadow-lg rounded-3 h-50 w-75'>
+                <Row className='h-100 py-3 px-3'>
+                    <Col className='rounded-3'
+                        style={{
+                            backgroundImage: `url(${vaccine_front_image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        }}
+                    >
+                    </Col>
+                    <Col>
+                        <Form onSubmit={handleSubmit} className='p-4'>
+                            <Form.Group className='mb-3'>
+                                <Form.Label  className='fs-1 fw-bold'>VaccineX</Form.Label> <br />
+                                <Form.Label className='fs-5'>The world #1 leading in vaccination</Form.Label>
+                            </Form.Group>
+                            <Form.Group className="mb-1">
+                                <Form.Control onChange={(e) => setEmail(e.target.value)} value={email} className='mb-2 fs-4' type="email" placeholder="Email" />
+                                <Form.Control onChange={(e) => setPassword(e.target.value)} value={password} className='fs-4' type="password" placeholder="Password" />
+                            </Form.Group>
+                            <Form.Group className="mb-3 d-flex justify-content-between">
+                                <Form.Check value={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className='text-muted fs-6' type="checkbox" label="Remember me" />
+                                <Link to='/forgot-password'>Forgot password?</Link>
+                            </Form.Group>
+                            <Button className='w-100 mt-5 fs-4 fw-bold rounded-3' variant="primary" type="submit">
+                                Login
+                            </Button>
+                            <Button onClick={() => navigate('/register')} className='w-100 mt-2 fw-bold rounded-3' variant="secondary">
+                                Register
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
         </Container>
     )
 }
