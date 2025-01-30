@@ -10,23 +10,43 @@ export const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const {user, setUser} = useContext(UserContext);
+    const [validated, setValidated] = useState(false);
+    const { user, setUser } = useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let user = {
-            email: email,
-            password: password,
-            loggedIn: true
+        const form = e.currentTarget;
+
+        // Mark form as validated
+        setValidated(true);
+
+        if (!form.checkValidity()) {
+            e.stopPropagation();
+            return;
         }
+
+        let body = {
+            email: email,
+            password: password
+        }
+
+        // Call API to login
+
+        let user = {
+            fullName: 'John Doe',
+            email: email,
+            loggedIn: true
+        };
+
         setUser(user);
         console.log(user);
         navigate('/');
-    }
+    };
+
 
     return (
-        <Container style={{ backgroundColor: "#ececec"}} className='vh-100 d-flex justify-content-center align-items-center' fluid>
-            <Container style={{minHeight: '560px', maxWidth: '1000px'}} className='bg-white shadow-lg rounded-3 h-50 w-75'>
+        <Container style={{ backgroundColor: "#ececec" }} className='vh-100 d-flex justify-content-center align-items-center' fluid>
+            <Container style={{ minHeight: '560px', maxWidth: '1000px' }} className='bg-white shadow-lg rounded-3 h-50 w-75'>
                 <Row className='h-100 py-3 px-3'>
                     <Col className='rounded-3'
                         style={{
@@ -38,14 +58,18 @@ export const LoginPage = () => {
                     >
                     </Col>
                     <Col>
-                        <Form onSubmit={handleSubmit} className='p-4'>
+                        <Form noValidate validated={validated} onSubmit={handleSubmit} className='p-4'>
                             <Form.Group className='mb-3'>
-                                <Form.Label  className='fs-1 fw-bold'>VaccineX</Form.Label> <br />
+                                <Form.Label className='fs-1 fw-bold'>VaccineX</Form.Label> <br />
                                 <Form.Label className='fs-5'>The world #1 leading in vaccination</Form.Label>
                             </Form.Group>
-                            <Form.Group className="mb-1">
-                                <Form.Control onChange={(e) => setEmail(e.target.value)} value={email} className='mb-2 fs-4' type="email" placeholder="Email" />
-                                <Form.Control onChange={(e) => setPassword(e.target.value)} value={password} className='fs-4' type="password" placeholder="Password" />
+                            <Form.Group className="mb-3">
+                                <Form.Control required onChange={(e) => setEmail(e.target.value)} value={email} className='mb-2 fs-4' type="email" placeholder="Email" />
+                                <Form.Control.Feedback type="invalid">Please provide a valid email address</Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group className="mb-2">
+                                <Form.Control required onChange={(e) => setPassword(e.target.value)} value={password} className='fs-4' type="password" placeholder="Password" />
+                                <Form.Control.Feedback type="invalid">Please provide a password</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group className="mb-3 d-flex justify-content-between">
                                 <Form.Check value={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className='text-muted fs-6' type="checkbox" label="Remember me" />

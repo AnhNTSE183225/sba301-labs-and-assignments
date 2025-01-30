@@ -5,14 +5,24 @@ import { ProtectedRoutes } from './utils/ProtectedRoutes'
 import { createContext, useEffect, useState } from 'react';
 import { RegisterPage } from './pages/RegisterPage';
 import { RememberPasswordPage } from './pages/RememberPasswordPage';
+import { EmptyPage } from './pages/EmptyPage';
+import { StockPage } from './pages/StockPage';
+import { TransactionPage } from './pages/TransactionPage';
 
 export const UserContext = createContext(null);
+
+export function signOut(setUser) {
+  localStorage.removeItem('user');
+  setUser({ loggedIn: false });
+}
 
 function App() {
 
   const [user, setUser] = useState(() => {
     let user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : { email: '', password: '', loggedIn: false };
+    return user
+      ? JSON.parse(user)
+      : { loggedIn: false };
   });
 
   useEffect(() => {
@@ -28,6 +38,11 @@ function App() {
           <Route path='/forgot-password' element={<RememberPasswordPage />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/profile" element={<EmptyPage />} />
+            <Route path="/settings" element={<EmptyPage />} />
+            <Route path="/feedback" element={<EmptyPage />} />
+            <Route path="/stock-management" element={<StockPage />} />
+            <Route path="/transaction-management" element={<TransactionPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
