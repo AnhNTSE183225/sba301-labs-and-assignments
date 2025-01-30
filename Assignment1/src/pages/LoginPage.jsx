@@ -46,7 +46,7 @@ export const LoginPage = () => {
 
     return (
         <Container style={{ backgroundColor: "#ececec" }} className='vh-100 d-flex justify-content-center align-items-center' fluid>
-            <Container style={{ minHeight: '560px', maxWidth: '1000px' }} className='bg-white shadow-lg rounded-3 h-50 w-75'>
+            <Container style={{ minHeight: '600px', maxWidth: '1000px' }} className='bg-white shadow-lg rounded-3 h-50 w-75'>
                 <Row className='h-100 py-3 px-3'>
                     <Col className='rounded-3'
                         style={{
