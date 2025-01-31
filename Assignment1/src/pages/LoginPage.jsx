@@ -40,7 +40,7 @@ export const LoginPage = () => {
 
         setUser(user);
         console.log(user);
-        navigate('/');
+        navigate('/stock-management');
     };
 
 
