@@ -361,7 +361,7 @@ export const StockPage = () => {
                                     <Button disabled={currentPage === 1} onClick={() => setCurrentPage(1)} className='p-0' variant=''><i className="bi bi-chevron-bar-left"></i></Button>
                                     <Button disabled={currentPage === 1} onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))} className='p-0' variant=''><i class="bi bi-chevron-left"></i></Button>
                                     <span>Hiển thị trang </span>
-                                    <input value={currentPage} onChange={(e) => setCurrentPage(e.target.value)} type="number" min={1} step={1} style={{ width: '30px' }} className='form-control p-0 text-center' />
+                                    <input value={currentPage} onChange={(e) => setCurrentPage(e.target.value)} type="number" min={1} step={1} max={totalPages} style={{ width: '30px' }} className='form-control p-0 text-center' />
                                     <span>trong {totalPages}</span>
                                     <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))} className='p-0' variant=''><i class="bi bi-chevron-right"></i></Button>
                                     <Button disabled={currentPage === totalPages} onClick={(e) => setCurrentPage(totalPages)} className='p-0' variant=''><i className="bi bi-chevron-bar-right"></i></Button>
