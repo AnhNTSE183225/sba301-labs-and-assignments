@@ -1,7 +1,6 @@
 import React from 'react'
+import { Navigate } from 'react-router'
 
 export const HomePage = () => {
-    return (
-        <div>Welcome to home page</div>
-    )
+    return <Navigate to='/nhap-kho' />
 }

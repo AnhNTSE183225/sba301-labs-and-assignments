@@ -147,3 +147,51 @@ export const transactions = [
         batchCode: 'B021',
     },
 ]
+
+export const addTransaction = ({
+    quantity,
+    exportDate,
+    batchId,
+    batchCode,
+}) => {
+    transactions.push({
+        id: transactions.length + 1,
+        quantity,
+        exportDate,
+        batchId,
+        batchCode,
+    })
+}
+
+export const updateTransaction = ({
+    id,
+    quantity,
+    exportDate,
+    batchId,
+    batchCode,
+}) => {
+    const index = transactions.findIndex(transaction => transaction.id === id);
+    if (index === -1) {
+        throw new Error('Transaction not found');
+    }
+    transactions[index] = {
+        id,
+        quantity,
+        exportDate,
+        batchId,
+        batchCode,
+    }
+}
+
+export const deleteTransactions = (ids) => {
+    if (ids.length === 0) throw new Error('No transaction to delete');
+
+    ids.forEach(id => {
+        const index = transactions.findIndex(transaction => transaction.id === id);
+        if (index >= 0) {
+            transactions.splice(index, 1);
+        }
+    });
+
+    console.log(transactions);
+}

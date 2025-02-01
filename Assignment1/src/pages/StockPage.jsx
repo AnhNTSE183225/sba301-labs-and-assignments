@@ -222,42 +222,42 @@ export const StockPage = () => {
                                             function: (a, b) => a.batchCode.localeCompare(b.batchCode),
                                             reversed: sortFunction.field === 'batchCode' ? !sortFunction.reversed : false
                                         });
-                                    }}>Mã lô {sortFunction.field === 'batchCode' ? !sortFunction.reversed ? <i class="bi bi-sort-up"></i> : <i class="bi bi-sort-down"></i> : null}</Button>
+                                    }}>Mã lô {sortFunction.field === 'batchCode' ? !sortFunction.reversed ? <i className="bi bi-sort-up"></i> : <i className="bi bi-sort-down"></i> : null}</Button>
                                     <Button variant={sortFunction.field == 'vaccineName' ? 'primary' : 'light'} className='rounded-0 me-3 mb-3' onClick={() => {
                                         setSortFunction({
                                             field: 'vaccineName',
                                             function: (a, b) => a.vaccineName.localeCompare(b.vaccineName),
                                             reversed: sortFunction.field === 'vaccineName' ? !sortFunction.reversed : false
                                         });
-                                    }}>Vaccine {sortFunction.field === 'vaccineName' ? !sortFunction.reversed ? <i class="bi bi-sort-up"></i> : <i class="bi bi-sort-down"></i> : null}</Button>
+                                    }}>Vaccine {sortFunction.field === 'vaccineName' ? !sortFunction.reversed ? <i className="bi bi-sort-up"></i> : <i className="bi bi-sort-down"></i> : null}</Button>
                                     <Button variant={sortFunction.field == 'quantity' ? 'primary' : 'light'} className='rounded-0 me-3 mb-3' onClick={() => {
                                         setSortFunction({
                                             field: 'quantity',
                                             function: (a, b) => a.quantity - b.quantity,
                                             reversed: sortFunction.field === 'quantity' ? !sortFunction.reversed : false
                                         });
-                                    }}>Số lượng {sortFunction.field === 'quantity' ? !sortFunction.reversed ? <i class="bi bi-sort-up"></i> : <i class="bi bi-sort-down"></i> : null}</Button>
+                                    }}>Số lượng {sortFunction.field === 'quantity' ? !sortFunction.reversed ? <i className="bi bi-sort-up"></i> : <i className="bi bi-sort-down"></i> : null}</Button>
                                     <Button variant={sortFunction.field == 'imported' ? 'primary' : 'light'} className='rounded-0 me-3 mb-3' onClick={() => {
                                         setSortFunction({
                                             field: 'imported',
                                             function: (a, b) => new Date(a.imported) - new Date(b.imported),
                                             reversed: sortFunction.field === 'imported' ? !sortFunction.reversed : false
                                         });
-                                    }}>Nhập {sortFunction.field === 'imported' ? !sortFunction.reversed ? <i class="bi bi-sort-up"></i> : <i class="bi bi-sort-down"></i> : null}</Button>
+                                    }}>Nhập {sortFunction.field === 'imported' ? !sortFunction.reversed ? <i className="bi bi-sort-up"></i> : <i className="bi bi-sort-down"></i> : null}</Button>
                                     <Button variant={sortFunction.field == 'expiration' ? 'primary' : 'light'} className='rounded-0 me-3 mb-3' onClick={() => {
                                         setSortFunction({
                                             field: 'expiration',
                                             function: (a, b) => new Date(a.expiration) - new Date(b.expiration),
                                             reversed: sortFunction.field === 'expiration' ? !sortFunction.reversed : false
                                         });
-                                    }}>Hết hạn {sortFunction.field === 'expiration' ? !sortFunction.reversed ? <i class="bi bi-sort-up"></i> : <i class="bi bi-sort-down"></i> : null}</Button>
+                                    }}>Hết hạn {sortFunction.field === 'expiration' ? !sortFunction.reversed ? <i className="bi bi-sort-up"></i> : <i className="bi bi-sort-down"></i> : null}</Button>
                                     <Button variant={sortFunction.field == 'warehouseName' ? 'primary' : 'light'} className='rounded-0 me-3 mb-3' onClick={() => {
                                         setSortFunction({
                                             field: 'warehouseName',
                                             function: (a, b) => a.warehouseName.localeCompare(b.warehouseName),
                                             reversed: sortFunction.field === 'warehouseName' ? !sortFunction.reversed : false
                                         });
-                                    }}>Kho {sortFunction.field === 'warehouseName' ? !sortFunction.reversed ? <i class="bi bi-sort-up"></i> : <i class="bi bi-sort-down"></i> : null}</Button>
+                                    }}>Kho {sortFunction.field === 'warehouseName' ? !sortFunction.reversed ? <i className="bi bi-sort-up"></i> : <i className="bi bi-sort-down"></i> : null}</Button>
                                 </Col>
                             </Row>
                             <Row>
@@ -318,11 +318,7 @@ export const StockPage = () => {
                                                     }} checked={selected.find(e => e === batch.id)} />
                                                 </td>
                                                 <td className='align-middle text-center p-0'>{batch.batchCode}</td>
-                                                <td style={{
-                                                    minWidth: '200px',
-                                                    maxWidth: '200px',
-                                                    wordWrap: 'break-word'
-                                                }}>[{batch.vaccineCode}]{batch.vaccineName}</td>
+                                                <td>[{batch.vaccineCode}]{batch.vaccineName}</td>
                                                 <td className='align-middle'>{batch.quantity}/{batch.batchSize}</td>
                                                 <td className='align-middle'>{dayjs(batch.imported).format('DD/MM/YYYY HH:mm')}</td>
                                                 <td className='align-middle'>{dayjs(batch.expiration).format('DD/MM/YYYY HH:mm')}</td>
@@ -359,11 +355,11 @@ export const StockPage = () => {
                             <Col>
                                 <div className='d-flex justify-content-end align-items-center gap-2'>
                                     <Button disabled={currentPage === 1} onClick={() => setCurrentPage(1)} className='p-0' variant=''><i className="bi bi-chevron-bar-left"></i></Button>
-                                    <Button disabled={currentPage === 1} onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))} className='p-0' variant=''><i class="bi bi-chevron-left"></i></Button>
+                                    <Button disabled={currentPage === 1} onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))} className='p-0' variant=''><i className="bi bi-chevron-left"></i></Button>
                                     <span>Hiển thị trang </span>
                                     <input value={currentPage} onChange={(e) => setCurrentPage(e.target.value)} type="number" min={1} step={1} max={totalPages} style={{ width: '30px' }} className='form-control p-0 text-center' />
                                     <span>trong {totalPages}</span>
-                                    <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))} className='p-0' variant=''><i class="bi bi-chevron-right"></i></Button>
+                                    <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))} className='p-0' variant=''><i className="bi bi-chevron-right"></i></Button>
                                     <Button disabled={currentPage === totalPages} onClick={(e) => setCurrentPage(totalPages)} className='p-0' variant=''><i className="bi bi-chevron-bar-right"></i></Button>
                                 </div>
                             </Col>
