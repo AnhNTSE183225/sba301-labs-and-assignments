@@ -41,8 +41,8 @@ function App() {
             <Route path="/profile" element={<EmptyPage />} />
             <Route path="/settings" element={<EmptyPage />} />
             <Route path="/feedback" element={<EmptyPage />} />
-            <Route path="/stock-management" element={<StockPage />} />
-            <Route path="/transaction-management" element={<TransactionPage />} />
+            <Route path="/nhap-kho" element={<StockPage />} />
+            <Route path="/xuat-kho" element={<TransactionPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

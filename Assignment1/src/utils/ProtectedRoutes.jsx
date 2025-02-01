@@ -14,8 +14,8 @@ export const ProtectedRoutes = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link as={Link} to='/stock-management'>Stock</Nav.Link>
-                            <Nav.Link as={Link} to='/transaction-management'>Transactions</Nav.Link>
+                            <Nav.Link as={Link} to='/nhap-kho'>Nhập kho</Nav.Link>
+                            <Nav.Link as={Link} to='/xuat-kho'>Xuất kho</Nav.Link>
                             <NavDropdown title={user.fullName} id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to='/settings'>Settings</NavDropdown.Item>

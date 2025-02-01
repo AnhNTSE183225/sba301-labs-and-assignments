@@ -272,7 +272,7 @@ export const StockPage = () => {
                     <Col xs={12} md={9}>
                         <Row>
                             <div className='d-flex align-items-center justify-content-between'>
-                                <h1 className='fw-bold fs-1'>Quản lý lô Vaccine</h1>
+                                <span className='fw-bold fs-1'>Quản lý nhập kho</span>
                                 <div className='d-flex gap-3'>
                                     {
                                         selected.length > 0 && (
@@ -282,7 +282,7 @@ export const StockPage = () => {
                                     <Button onClick={() => {
                                         setCurrentMode('add');
                                         setShowAddModal(true);
-                                    }} variant='success' className='rounded-0'> <i className="bi bi-plus-square me-2"></i> Thêm mới</Button>
+                                    }} variant='success' className='rounded-0'> <i className="bi bi-plus-square me-2"></i> Nhập lô mới</Button>
                                     <Button variant='success' className='rounded-0'> <i className="bi bi-box-arrow-in-right me-2"></i> Import</Button>
                                     <Button variant='success' className='rounded-0'> <i className="bi bi-box-arrow-right me-2"></i> Xuất file</Button>
                                 </div>
@@ -382,7 +382,7 @@ export const StockPage = () => {
             </Container>
             <Modal show={showAddModal} onHide={handleCloseModal} size='xl'>
                 <Modal.Header closeButton>
-                    <Modal.Title>{currentMode == 'add' ? 'Thêm lô mới' : `Chỉnh sửa lô ${targetBatch.batchCode}`}</Modal.Title>
+                    <Modal.Title>{currentMode == 'add' ? 'Nhập lô mới' : `Chỉnh sửa lô ${targetBatch.batchCode}`}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Container>
